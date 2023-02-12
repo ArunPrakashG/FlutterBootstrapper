@@ -2,7 +2,7 @@
   "profiles": {
     "FlutterBootstrapper": {
       "commandName": "Project",
-      "commandLineArgs": "init --arch MVM",
+      "commandLineArgs": "init --arch MVM --name \"Flutter Mvvm Clone\"",
       "nativeDebugging": false
     }
   }

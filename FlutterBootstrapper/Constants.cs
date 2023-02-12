@@ -8,7 +8,7 @@ namespace FlutterBootstrapper {
 
 	internal class RepositoryTemplates {
 		private const string CleanArchitecture = "https://github.com/ahmedtalal/flutter-clean-architecture";
-		private const string Mvvm = "https://github.com/jitsm555/Flutter-MVVM";
+		private const string Mvvm = "https://github.com/ArunPrakashG/mgu_result_checker";
 
 		internal static Uri GetTemplateUrl(EProjectArchitecture arch) {
 			switch (arch) {
