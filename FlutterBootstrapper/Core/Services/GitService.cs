@@ -8,6 +8,9 @@ namespace FlutterBootstrapper.Core.Services {
 			CloneOptions cloneOptions = new() {
 				IsBare = false,
 				RecurseSubmodules = true,
+				// We can later on add support for custom credentials via an auth command
+				// We will then save this credentials on a local db for further requests
+				// CredentialsProvider = (url, userFromUrl, type) => new DefaultCredentials(),
 			};
 
 			return Repository.Clone(url, directory, cloneOptions);
