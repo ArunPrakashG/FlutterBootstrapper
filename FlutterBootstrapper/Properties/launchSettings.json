@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "FlutterBootstrapper": {
+      "commandName": "Project",
+      "commandLineArgs": "init --arch MVM",
+      "nativeDebugging": false
+    }
+  }
+}

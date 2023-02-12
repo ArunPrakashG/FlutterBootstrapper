@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;ARM64</Platforms>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <SignAssembly>False</SignAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+	<PackageReference Include="CliWrap" Version="3.6.0" />
+	<PackageReference Include="Throw" Version="1.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="G:\GitHub-Projects\FlutterBootstrapper\FlutterBootstrapper\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="G:\GitHub-Projects\FlutterBootstrapper\FlutterBootstrapper\.editorconfig" />
+  </ItemGroup>
+
+</Project>

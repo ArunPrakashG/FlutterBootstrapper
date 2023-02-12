@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlutterBootstrapper", "FlutterBootstrapper\FlutterBootstrapper.csproj", "{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM64 = Debug|ARM64
+		Release|Any CPU = Release|Any CPU
+		Release|ARM64 = Release|ARM64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}.Debug|ARM64.Build.0 = Debug|ARM64
+		{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}.Release|ARM64.ActiveCfg = Release|ARM64
+		{B65C5BF7-E381-4CDC-937D-D9A0B94E87D0}.Release|ARM64.Build.0 = Release|ARM64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B49116AD-8A68-4A7F-A1B1-7857EEC685EB}
+	EndGlobalSection
+EndGlobal
