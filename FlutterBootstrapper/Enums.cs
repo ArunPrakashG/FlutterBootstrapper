@@ -1,5 +1,5 @@
 namespace FlutterBootstrapper {
-	internal class Enums {
+	internal sealed class Enums {
 		internal enum EProjectArchitecture {
 			TDD,
 			DDD,

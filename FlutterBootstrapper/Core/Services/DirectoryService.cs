@@ -7,7 +7,7 @@ namespace FlutterBootstrapper.Core.Services {
 		// - return the dir path
 
 		public string? GetProjectRootDirectory() {
-			return Directory.EnumerateFiles(Directory.GetCurrentDirectory(), Constants.PubspecFileName, new EnumerationOptions() {
+			string? enumeratedResult = Directory.EnumerateFiles(Directory.GetCurrentDirectory(), Constants.PubspecFileName, new EnumerationOptions() {
 				AttributesToSkip = FileAttributes.Hidden | FileAttributes.System,
 				IgnoreInaccessible = true,
 				MatchCasing = MatchCasing.CaseSensitive,
@@ -15,27 +15,8 @@ namespace FlutterBootstrapper.Core.Services {
 				MaxRecursionDepth = 20,
 
 			}).FirstOrDefault();
-		}
 
-		public bool DeinitGit(string directory) {
-			if (!Directory.Exists(directory)) {
-				throw new DirectoryNotFoundException();
-			}
-
-			foreach (string dir in Directory.EnumerateDirectories(directory)) {
-				string? name = Path.GetFileName(dir);
-
-				if (string.IsNullOrEmpty(name)) {
-					continue;
-				}
-
-				if (name.Equals(Constants.GitDirectoryName, StringComparison.Ordinal)) {
-					Helpers.DeleteDirectory(dir);
-					return true;
-				}
-			}
-
-			return false;
+			return enumeratedResult ?? ServiceLocator.Instance.Get<GitService>().DiscoverRepository();
 		}
 
 		public bool IsDartProjectDirectory(string directory) {
@@ -43,27 +24,8 @@ namespace FlutterBootstrapper.Core.Services {
 				return false;
 			}
 
-			return Directory.EnumerateFiles(directory).Any((x) => Path.GetFileName(x).Equals(Constants.PubspecFileName, StringComparison.Ordinal));
-		}
-
-		public bool IsGitDirectory(string directory) {
-			if (!Directory.Exists(directory)) {
-				return false;
-			}
-
-			foreach (string dir in Directory.EnumerateDirectories(directory)) {
-				string? name = Path.GetFileName(dir);
-
-				if (string.IsNullOrEmpty(name)) {
-					continue;
-				}
-
-				if (name.Equals(Constants.GitDirectoryName, StringComparison.Ordinal)) {
-					return true;
-				}
-			}
-
-			return false;
+			return Directory.EnumerateFiles(directory)
+				   .Any(predicate: (x) => Path.GetFileName(x).Equals(Constants.PubspecFileName, StringComparison.Ordinal));
 		}
 
 		public void Initiailize() {
