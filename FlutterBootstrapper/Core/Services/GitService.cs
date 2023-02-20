@@ -1,6 +1,6 @@
 using System.Globalization;
+using FlutterBootstrapper.Utilities;
 using LibGit2Sharp;
-using static FlutterBootstrapper.Enums;
 
 namespace FlutterBootstrapper.Core.Services {
 	internal sealed class GitService : IService {
@@ -10,7 +10,7 @@ namespace FlutterBootstrapper.Core.Services {
 				RecurseSubmodules = true,
 				// We can later on add support for custom credentials via an auth command
 				// We will then save this credentials on a local db for further requests
-				// CredentialsProvider = (url, userFromUrl, type) => new DefaultCredentials(),
+				CredentialsProvider = (url, userFromUrl, type) => new DefaultCredentials(),
 			};
 
 			return Repository.Clone(url, directory, cloneOptions);
@@ -28,31 +28,30 @@ namespace FlutterBootstrapper.Core.Services {
 			_ = new Repository(gitDirectory).CreateBranch(branchName);
 		}
 
-		internal string? CloneTemplate(string directory, EProjectArchitecture arch, string projectName, bool deleteExisting = false) {
+		internal string? CloneTemplate(string directory, string projectName, bool deleteExisting = false) {
 			if (!Directory.Exists(directory)) {
 				throw new DirectoryNotFoundException();
 			}
 
 			projectName = projectName.Trim().ToLower(CultureInfo.InvariantCulture).Replace(' ', '_');
 
-			Uri templateUri = RepositoryTemplates.GetTemplateUrl(arch);
+			Uri templateUri = RepositoryTemplates.GetTemplateUrl();
 			string tempDirectoryName = Guid.NewGuid().ToString("N");
 			string tempDirectory = Path.Combine(directory, tempDirectoryName);
+			string projectDirectory = Path.Combine(directory, projectName);
+
+			if (Directory.Exists(projectDirectory)) {
+				if (!deleteExisting) {
+					throw new InvalidOperationException($"Directory already exists. {projectDirectory}");
+				}
+
+				Directory.Delete(projectDirectory, true);
+			}
 
 			_ = Clone(templateUri.ToString(), tempDirectory);
 
 			if (tempDirectory == null || !Directory.Exists(tempDirectory)) {
 				throw new DirectoryNotFoundException(tempDirectory);
-			}
-
-			string projectDirectory = Path.Combine(directory, projectName);
-
-			if (Directory.Exists(projectDirectory)) {
-				if (deleteExisting) {
-					throw new InvalidOperationException($"Directory already exists. {projectDirectory}");
-				}
-
-				Directory.Delete(projectDirectory, true);
 			}
 
 			Directory.Move(tempDirectory, projectDirectory);
@@ -66,7 +65,7 @@ namespace FlutterBootstrapper.Core.Services {
 			}
 
 			if (!IsGitRepository(directory)) {
-				throw new InvalidOperationException($"{directory} is not a git repository.");
+				return true;
 			}
 
 			foreach (string dir in Directory.EnumerateDirectories(directory)) {

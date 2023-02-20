@@ -1,7 +1,7 @@
 using System.Reflection;
 using CommandLine;
 
-namespace FlutterBootstrapper.Commands {
+namespace FlutterBootstrapper.Core.Commands {
 	internal sealed class CommandParser {
 
 		internal async Task<int> ExecuteAsync(string[] args) {
@@ -12,9 +12,15 @@ namespace FlutterBootstrapper.Commands {
 			try {
 				ParserResult<object> result = parser.ParseArguments(args, commandTypes);
 
-				for (int i = 0; i < commandTypes.Length; i++) {
-					_ = await result.WithParsedAsync<ICommand>((command) => command.ProcessAsync());
-				}
+				_ = await result.WithParsedAsync(async (command) => {
+					foreach (Type type in commandTypes) {
+						if (type != command.GetType()) {
+							continue;
+						}
+
+						await command.Cast<ICommand>().ProcessAsync();
+					}
+				});
 
 				_ = await result.WithNotParsedAsync(OnParseError);
 

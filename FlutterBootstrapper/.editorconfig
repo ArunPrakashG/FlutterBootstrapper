@@ -92,7 +92,7 @@ csharp_style_prefer_switch_expression = true:warning
 csharp_style_throw_expression = true:warning
 
 csharp_style_unused_value_assignment_preference = discard_variable:warning
-csharp_style_unused_value_expression_statement_preference = discard_variable:warning
+csharp_style_unused_value_expression_statement_preference = discard_variable:none
 
 csharp_style_var_elsewhere = false:warning
 csharp_style_var_for_built_in_types = false:warning
@@ -118,6 +118,12 @@ csharp_style_prefer_extended_property_pattern = false:suggestion
 
 # CA1822: Mark members as static
 dotnet_diagnostic.CA1822.severity = silent
+
+# IDE0058: Expression value is never used
+dotnet_diagnostic.IDE0058.severity = none
+
+# CA2241: Provide correct arguments to formatting methods
+dotnet_diagnostic.CA2241.severity = none
 
 [*.{cs,vb}]
 dotnet_analyzer_diagnostic.severity = warning
@@ -239,6 +245,9 @@ dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
 ###############################
 # JetBrains, IntelliJ/Rider   #
 ###############################
+
+# Default severity for analyzer diagnostics with category 'Design'
+dotnet_analyzer_diagnostic.category-Design.severity = none
 
 [*.{csproj,props,xml}]
 ij_xml_keep_blank_lines = 1

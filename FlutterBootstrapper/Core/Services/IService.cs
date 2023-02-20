@@ -1,4 +1,4 @@
-﻿namespace FlutterBootstrapper.Core.Services {
+namespace FlutterBootstrapper.Core.Services {
 	internal interface IService {
 		void Initiailize();
 	}

@@ -2,7 +2,7 @@ using System.Reflection;
 using CommandLine;
 using FlutterBootstrapper.Core.Services;
 
-namespace FlutterBootstrapper.Core {
+namespace FlutterBootstrapper.Utilities {
 	internal sealed class ServiceLocator {
 		private readonly List<IService> Services = new();
 		private bool HasInitialized;

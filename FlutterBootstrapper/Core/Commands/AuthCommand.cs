@@ -1,6 +1,6 @@
 using CommandLine;
 
-namespace FlutterBootstrapper.Commands {
+namespace FlutterBootstrapper.Core.Commands {
 	[Verb("auth")]
 	internal class AuthCommand : CommandMeta, ICommand {
 		public async Task ProcessAsync() {

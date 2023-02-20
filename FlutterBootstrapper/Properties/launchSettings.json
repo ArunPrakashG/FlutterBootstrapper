@@ -1,9 +1,13 @@
 {
   "profiles": {
-    "FlutterBootstrapper": {
+    "Create Command": {
       "commandName": "Project",
-      "commandLineArgs": "init --arch MVM --name \"Flutter Mvvm Clone\"",
+      "commandLineArgs": "create --context Service --name \"Network Client\"",
       "nativeDebugging": false
+    },
+    "Init Command": {
+      "commandName": "Project",
+      "commandLineArgs": "init --name \"Flutter Mvvm Template\" --arch \"mvm\" --delete-existing true --sync-packages false"
     }
   }
 }

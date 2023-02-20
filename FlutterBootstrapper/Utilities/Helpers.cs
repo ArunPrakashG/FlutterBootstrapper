@@ -1,8 +1,19 @@
 using System.Globalization;
+using System.Reflection;
+using FlutterBootstrapper.Utilities.Attributes;
 using static FlutterBootstrapper.Enums;
 
-namespace FlutterBootstrapper.Core {
-	internal class Helpers {
+namespace FlutterBootstrapper.Utilities {
+	internal static class Helpers {
+		public static string? GetStringValue(this Enum value) {
+			FieldInfo? fieldInfo = value.GetType().GetField(value.ToString());
+
+			if ((fieldInfo?.GetCustomAttributes(typeof(StringValueAttribute), false)) is StringValueAttribute[] attribs) {
+				return attribs.First().Value ?? "";
+			}
+
+			return null;
+		}
 		public static void DeleteDirectory(string targetDir) {
 			File.SetAttributes(targetDir, FileAttributes.Normal);
 

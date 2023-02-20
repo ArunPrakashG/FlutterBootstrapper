@@ -1,7 +1,7 @@
-using FlutterBootstrapper.Core;
 using FlutterBootstrapper.Core.Services;
+using FlutterBootstrapper.Utilities;
 
-namespace FlutterBootstrapper.Commands {
+namespace FlutterBootstrapper.Core.Commands {
 	internal abstract class CommandMeta {
 		protected ProcessService ProcessService => ServiceLocator.Instance.Get<ProcessService>();
 
