@@ -1,6 +1,6 @@
 using System.Reflection;
 using CommandLine;
-using FlutterBootstrapper.Core.Services;
+using FlutterBootstrapper.Abstracts.Service;
 
 namespace FlutterBootstrapper.Utilities {
 	internal sealed class ServiceLocator {

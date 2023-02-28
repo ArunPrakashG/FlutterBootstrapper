@@ -1,4 +1,5 @@
-using FlutterBootstrapper.Utilities.Models;
+using FlutterBootstrapper.Abstracts.Architecture.Models;
+using FlutterBootstrapper.Abstracts.Service;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 

@@ -1,5 +1,6 @@
 using System.Reflection;
 using CommandLine;
+using FlutterBootstrapper.Abstracts.Command;
 
 namespace FlutterBootstrapper.Core.Commands {
 	internal sealed class CommandParser {

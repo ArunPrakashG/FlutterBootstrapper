@@ -1,7 +1,5 @@
-using System.Globalization;
 using System.Reflection;
 using FlutterBootstrapper.Utilities.Attributes;
-using static FlutterBootstrapper.Enums;
 
 namespace FlutterBootstrapper.Utilities {
 	internal static class Helpers {
@@ -30,18 +28,6 @@ namespace FlutterBootstrapper.Utilities {
 			}
 
 			Directory.Delete(targetDir, false);
-		}
-
-		public static EProjectArchitecture ParseArchitecture(string? architecture) {
-			if (architecture == null) {
-				return EProjectArchitecture.MVM;
-			}
-
-			return architecture.ToLower(CultureInfo.InvariantCulture) switch {
-				"tdd" => EProjectArchitecture.TDD,
-				"ddd" => EProjectArchitecture.DDD,
-				_ => EProjectArchitecture.MVM,
-			};
 		}
 	}
 }

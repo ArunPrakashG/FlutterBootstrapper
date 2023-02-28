@@ -1,21 +1,26 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Text;
+using FlutterBootstrapper.Abstracts.Architecture;
 
 namespace FlutterBootstrapper.Core.Architectures {
 
 	public readonly struct CustomMVVM : IProjectArchitecture {
 		public string Name => "Mvvm";
 
-		public string View => "view";
+		public string FeaturesDirectory => "view";
 
-		public string Logic => "view_model";
+		public string Routing => "view_model";
 
 		public string Navigation => "core/routes";
 
 		public string Services => "core/services";
 
+		public Uri TemplateUri => throw new NotImplementedException();
+
+		public string Identifier => throw new NotImplementedException();
+
 		public string GetViewWidgetsPath(string creationName) {
-			return Path.Combine(View, creationName, "widgets");
+			return Path.Combine(FeaturesDirectory, creationName, "widgets");
 		}
 
 		public string GetViewTemplate(string creationName) {
@@ -35,7 +40,7 @@ namespace FlutterBootstrapper.Core.Architectures {
 			return stringBuilder.ToString();
 		}
 
-		public string GetViewWidgetTemplate(string creationName) {
+		public string GetViewModelTemplate(string creationName) {
 			return "";
 		}
 	}

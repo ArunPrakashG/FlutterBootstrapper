@@ -1,3 +1,4 @@
+using FlutterBootstrapper.Abstracts.Service;
 using FlutterBootstrapper.Utilities;
 using FlutterBootstrapper.Utilities.Models;
 

@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text;
 using CommandLine;
+using FlutterBootstrapper.Abstracts.Command;
 using FlutterBootstrapper.Core.Architectures;
 using static FlutterBootstrapper.Enums;
 
@@ -36,7 +37,7 @@ namespace FlutterBootstrapper.Core.Commands {
 
 			switch (Context) {
 				case EContext.View:
-					string viewDir = Path.Combine(libDir, arch.View, creationName);
+					string viewDir = Path.Combine(libDir, arch.FeaturesDirectory, creationName);
 					string viewWidgetsDir = Path.Combine(libDir, arch.GetViewWidgetsPath(creationName));
 
 					Directory.CreateDirectory(viewDir);

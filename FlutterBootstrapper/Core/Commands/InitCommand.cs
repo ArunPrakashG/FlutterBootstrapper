@@ -1,6 +1,6 @@
 using CommandLine;
+using FlutterBootstrapper.Abstracts.Command;
 using FlutterBootstrapper.Core.Services;
-using FlutterBootstrapper.Utilities;
 using FlutterBootstrapper.Utilities.Models;
 
 namespace FlutterBootstrapper.Core.Commands {
@@ -9,7 +9,7 @@ namespace FlutterBootstrapper.Core.Commands {
 		[Option('n', "name", Required = true)]
 		public string? ProjectName { get; private set; }
 
-		[Option('a', "arch", Default = "mvm")]
+		[Option('a', "arch")]
 		public string? Architecture { get; private set; }
 
 		[Option("packages", Separator = ',')]
@@ -31,7 +31,8 @@ namespace FlutterBootstrapper.Core.Commands {
 
 			Logger.Log($"Current Working Directory: {Directory.GetCurrentDirectory()}");
 
-			_ = Helpers.ParseArchitecture(Architecture);
+			Architecture = Architecture?.Trim();
+
 			string currentDirectory = Directory.GetCurrentDirectory();
 
 			string? cloneDir = GitService.CloneTemplate(currentDirectory, ProjectName, DeleteExisting);
