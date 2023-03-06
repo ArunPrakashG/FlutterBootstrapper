@@ -4,6 +4,7 @@ using FlutterBootstrapper.Abstracts.Command;
 namespace FlutterBootstrapper.ExampleLibrary
 {
     internal class CommandProcessor : ICreateProcessor, IProjectProcessor
+
     {
         public Task<GenerateResult> OnGenerateFeature(GenerateFeatureRequest request)
         {

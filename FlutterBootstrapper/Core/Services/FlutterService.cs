@@ -1,10 +1,9 @@
 using FlutterBootstrapper.Abstracts.Architecture.Models;
-using FlutterBootstrapper.Abstracts.Service;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace FlutterBootstrapper.Core.Services {
-	internal class FlutterService : IService {
+	internal class FlutterService {
 
 		internal async Task GetPubspec(string projectDirectory) {
 			string pubspecFilePath = Path.Combine(projectDirectory, Constants.PubspecFileName);

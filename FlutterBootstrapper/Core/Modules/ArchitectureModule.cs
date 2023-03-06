@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlutterBootstrapper.Core.Architectures {
-	internal class ArchitectureLoader {
+namespace FlutterBootstrapper.Core.Modules {
+	internal class ArchitectureModule {
 	}
 }

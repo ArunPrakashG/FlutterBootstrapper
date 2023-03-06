@@ -7,7 +7,7 @@ using static FlutterBootstrapper.Enums;
 
 namespace FlutterBootstrapper.Core.Commands {
 	[Verb("create")]
-	internal class CreateCommand : CommandMeta, ICommand {
+	internal class CreateCommand : CommandDependencies, ICommand {
 		[Option('c', "context", Required = true)]
 		public EContext Context { get; private set; }
 

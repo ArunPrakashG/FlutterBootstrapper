@@ -1,10 +1,9 @@
 using System.Globalization;
-using FlutterBootstrapper.Abstracts.Service;
 using FlutterBootstrapper.Utilities;
 using LibGit2Sharp;
 
 namespace FlutterBootstrapper.Core.Services {
-	internal sealed class GitService : IService {
+	internal sealed class GitService {
 		internal string Clone(string url, string directory) {
 			CloneOptions cloneOptions = new() {
 				IsBare = false,
@@ -29,14 +28,13 @@ namespace FlutterBootstrapper.Core.Services {
 			_ = new Repository(gitDirectory).CreateBranch(branchName);
 		}
 
-		internal string? CloneTemplate(string directory, string projectName, bool deleteExisting = false) {
+		internal string? CloneTemplate(string directory, string projectName, Uri templateUri, bool deleteExisting = false) {
 			if (!Directory.Exists(directory)) {
 				throw new DirectoryNotFoundException();
 			}
 
 			projectName = projectName.Trim().ToLower(CultureInfo.InvariantCulture).Replace(' ', '_');
 
-			Uri templateUri = RepositoryTemplates.GetTemplateUrl();
 			string tempDirectoryName = Guid.NewGuid().ToString("N");
 			string tempDirectory = Path.Combine(directory, tempDirectoryName);
 			string projectDirectory = Path.Combine(directory, projectName);

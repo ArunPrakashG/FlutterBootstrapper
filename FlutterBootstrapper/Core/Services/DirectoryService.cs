@@ -1,9 +1,8 @@
-using FlutterBootstrapper.Abstracts.Service;
 using FlutterBootstrapper.Utilities;
 using FlutterBootstrapper.Utilities.Models;
 
 namespace FlutterBootstrapper.Core.Services {
-	internal class DirectoryService : IService {
+	internal class DirectoryService {
 		// TODO:
 		// - Scan current working directory
 		// - Traverse to find root flutter directory
@@ -50,7 +49,7 @@ namespace FlutterBootstrapper.Core.Services {
 			});
 
 			if (!enumeratedResults.Any()) {
-				return ServiceLocator.Instance.Get<GitService>().DiscoverRepository();
+				return Dependencies.Instance.Get<GitService>().DiscoverRepository();
 			}
 
 			if (enumeratedResults.Count() > 1) {

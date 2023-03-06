@@ -1,10 +1,8 @@
 using CliWrap;
-using FlutterBootstrapper.Abstracts.Service;
-using FlutterBootstrapper.Utilities;
 
 namespace FlutterBootstrapper.Core.Services {
-	internal class ProcessService : IService {
-		private DirectoryService DirectoryService => ServiceLocator.Instance.Get<DirectoryService>();
+	internal class ProcessService {
+		private DirectoryService DirectoryService => DependencyLocator.Instance.Get<DirectoryService>();
 
 		internal async Task<bool> IsFlutterInstalled() {
 			CommandResult result = await Cli.Wrap("flutter").WithArguments("help").ExecuteAsync();

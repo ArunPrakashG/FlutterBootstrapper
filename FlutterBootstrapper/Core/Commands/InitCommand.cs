@@ -1,11 +1,13 @@
 using CommandLine;
+using FlutterBootstrapper.Abstracts.Architecture;
 using FlutterBootstrapper.Abstracts.Command;
 using FlutterBootstrapper.Core.Services;
+using FlutterBootstrapper.Utilities;
 using FlutterBootstrapper.Utilities.Models;
 
 namespace FlutterBootstrapper.Core.Commands {
 	[Verb("init")]
-	internal class InitCommand : CommandMeta, ICommand {
+	internal class InitCommand : CommandDependencies, ICommand {
 		[Option('n', "name", Required = true)]
 		public string? ProjectName { get; private set; }
 
@@ -31,11 +33,20 @@ namespace FlutterBootstrapper.Core.Commands {
 
 			Logger.Log($"Current Working Directory: {Directory.GetCurrentDirectory()}");
 
-			Architecture = Architecture?.Trim();
+			Architecture = Architecture?.Trim().Replace(" ", "_");
 
+			Dependencies<IProjectArchitecture> projectArcs = new();
 			string currentDirectory = Directory.GetCurrentDirectory();
+			await projectArcs.LoadExternal(Path.Combine(Directory.GetCurrentDirectory(), "Architectures"));
 
-			string? cloneDir = GitService.CloneTemplate(currentDirectory, ProjectName, DeleteExisting);
+			IProjectArchitecture? selectedArch = projectArcs.Get((arch) => arch.Identifier.Replace(" ", "_").Equals(Architecture, StringComparison.OrdinalIgnoreCase));
+
+			if (selectedArch == null) {
+				Logger.Log("Selected Architecture is invalid.");
+				return;
+			}
+
+			string? cloneDir = GitService.CloneTemplate(currentDirectory, ProjectName, selectedArch.TemplateUri, DeleteExisting);
 
 			if (cloneDir == null) {
 				Logger.Log("Failed to Clone template to current working directory.");

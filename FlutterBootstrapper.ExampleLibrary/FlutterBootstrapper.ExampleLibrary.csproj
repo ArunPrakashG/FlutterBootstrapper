@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FlutterBootstrapper.Abstracts\FlutterBootstrapper.Abstracts.csproj" />
+  </ItemGroup>
+
 </Project>
